@@ -19,7 +19,6 @@ export const CommentsScreen = () => {
   const {
     params: { image, comments },
   } = useRoute();
-  
 
   const hadleAddComment = () => {
     console.log(comment);
@@ -34,12 +33,14 @@ export const CommentsScreen = () => {
         </View>
         
         <FlatList
+          style={styles.commentsContainer}
           data={comments}
           renderItem={({ item }) => <Comment comments={item} />}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
         />
+        
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
@@ -63,7 +64,6 @@ export const CommentsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
@@ -83,10 +83,12 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
+  commentsContainer: {
+    maxHeight: 323,
+  },
   inputContainer: {
     width: "100%",
     minHeight: 50,
-    // height: "auto",
     borderWidth: 1,
     borderColor: "#E8E8E8",
     backgroundColor: "#F6F6F6",
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 8,
     marginTop: 15,
-    marginBottom: 16,
+    marginBottom: 24,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
